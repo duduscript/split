@@ -7,7 +7,7 @@ def singleton(cls, *args, **kw):
     return _singleton
 
 @singleton
-class Dictionary: 
+class Dictionary(object): 
     def __init__(self, x=0):
         self.dic = set()
         with open('GWDic.dic') as file:

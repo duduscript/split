@@ -1,15 +1,4 @@
 import load
-'''
-def load(path):
-    dic = set()
-    with open(path) as file:
-        for word in file.readlines():
-            dic.add(word[:-1])
-    return dic
-
-
-dic = load('GWDic.dic')
-'''
     
 def isindir(word):
     return word in dic
@@ -79,4 +68,5 @@ def test():
     printSplit('教育要面向现代化面向科技面向未来')
     printSplit('中央决定了就让你来当主席')
 
-test()
+if __name__ == '__main__':
+    test()
