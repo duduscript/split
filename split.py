@@ -1,3 +1,5 @@
+import load
+'''
 def load(path):
     dic = set()
     with open(path) as file:
@@ -7,7 +9,7 @@ def load(path):
 
 
 dic = load('GWDic.dic')
-
+'''
     
 def isindir(word):
     return word in dic
@@ -34,8 +36,9 @@ def split(sentence):
             sentences.append([sentence])
             return
         result,hasfind = [],False
+        dic = load.Dictionary()
         for i in range(1,len(sentence)):
-            if sentence[:i+1] in dic:
+            if sentence[:i+1] in dic.getDic():
                 hasfind = True
                 splitChinses(words+[sentence[:i+1]],sentence[i+1:],sentences)
         if not hasfind:
