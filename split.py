@@ -1,11 +1,10 @@
 import load
-    
+
 def isindir(word):
     return word in dic
 
 def isalnum(char):
     return char.isdigit() or char.isupper() or char.islower()
-
 
 def initSplit(sentence):
     isal_or_num = isalnum(sentence[0])
@@ -45,7 +44,7 @@ def sentence_combination(sentence):
             comb(snt[1:], path+snt[0][i], paths)
     result = []
     comb(sentence, [], result)
-    return result 
+    return result
 
 def splitSentence(sentence):
     sentence = initSplit(sentence)
