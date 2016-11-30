@@ -1,4 +1,5 @@
 import load
+import bigram
 
 def isindir(word):
     return word in dic
@@ -59,13 +60,21 @@ def printSplit(sentence):
 
 def test():
     printSplit('我爱北京天安门')
+    print(bigram.bigram(splitSentence('我爱北京天安门')))
     printSplit('我们是共产主义的接班人')
+    print(bigram.bigram(splitSentence('我们是共产主义的接班人')))
     printSplit('这种乒乓球拍卖的很好')
+    print(bigram.bigram(splitSentence('这种乒乓球拍卖的很好')))
     printSplit('我来自武汉理工大学计算机学院１２０２班')
+    print(bigram.bigram(splitSentence('我来自武汉理工大学计算机学院１２０２班')))
     printSplit('我在北京邮电大学网络空间安全学院')
+    print(bigram.bigram(splitSentence('我在北京邮电大学网络空间安全学院')))
     printSplit('你们啊还是太年轻naive')
+    print(bigram.bigram(splitSentence('你们啊还是太年轻naive')))
     printSplit('教育要面向现代化面向科技面向未来')
+    print(bigram.bigram(splitSentence('教育要面向现代化面向科技面向未来')))
     printSplit('中央决定了就让你来当主席')
+    print(bigram.bigram(splitSentence('中央决定了就让你来当主席')))
 
 if __name__ == '__main__':
     test()

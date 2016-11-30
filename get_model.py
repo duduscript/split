@@ -6,13 +6,13 @@ import load
 class Model(object):
     def __init__(self,dir):
         self.model = {'^':{}}
-        #self.words = load.Dictionary().getDic()
         self.training_dir = dir
+        self.dict = load.Dictionary().getDic()
     def get_model(self):
         return self.model
     def train(self):
         def train_sentence(sentence):
-            sentence_words = list(jieba.cut(sentence,cut_all=False))
+            sentence_words = list(filter(lambda word:word in self.dict,jieba.cut(sentence,cut_all=False)))
             for i in range(len(sentence_words)):
                 prev = '^' if i == 0 else sentence_words[i-1]
                 #print(sentence_words[i])
@@ -29,14 +29,15 @@ class Model(object):
             for sentence in sentences:
                 train_sentence(sentence)
         def print_model():
-            print(self.model)
+            print('model=',end='')
+            print(self.model,end='')
         files = self.get_training_files()
         count = 1
         for file in files:
             train_paragraph(file.read())
-            print(count)
+            #print(count)
             count += 1
-        print(self.model)
+        #print_model()
     def get_training_files(self):
         for path in os.listdir(self.training_dir):
             with open('/'.join([os.getcwd(),self.training_dir,path])) as file:
@@ -44,5 +45,6 @@ class Model(object):
 
 
 if __name__ == '__main__':
-    model = Model('training')
-    model.train()
+    pass
+    #model = Model('training')
+    #model.train()
