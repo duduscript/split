@@ -15,7 +15,6 @@ class Model(object):
             sentence_words = list(filter(lambda word:word in self.dict,jieba.cut(sentence,cut_all=False)))
             for i in range(len(sentence_words)):
                 prev = '^' if i == 0 else sentence_words[i-1]
-                #print(sentence_words[i])
                 if sentence_words[i] not in self.model:
                     self.model[sentence_words[i]] = {}
                 if sentence_words[i] in self.model[prev]:
@@ -24,8 +23,7 @@ class Model(object):
                     self.model[prev][sentence_words[i]] = 1
         def train_paragraph(paragraph):
             #sentences = paragraph.split()
-            sentences = filter(lambda x:len(x),re.split(',|\.|;|，|。|；|：|、|\?|？|　',paragraph))
-            #print(sentences)
+            sentences = filter(lambda x:len(x),re.split('《|》|，|。|；|：|、|（|）|＝|－|｜|】|【|｛|｜｝|！|＠|＃||？|　',paragraph))
             for sentence in sentences:
                 train_sentence(sentence)
         def print_model():
@@ -34,17 +32,19 @@ class Model(object):
         files = self.get_training_files()
         count = 1
         for file in files:
-            train_paragraph(file.read())
-            #print(count)
+            para = file.read()
+            train_paragraph(para)
+            if count % 100 == 0:
+                print(count)
             count += 1
-        #print_model()
+        print_model()
     def get_training_files(self):
         for path in os.listdir(self.training_dir):
-            with open('/'.join([os.getcwd(),self.training_dir,path])) as file:
+            with open('/'.join([os.getcwd(),self.training_dir,path]),encoding='utf-8', errors='ignore') as file:
                 yield file
 
 
 if __name__ == '__main__':
     pass
-    #model = Model('training')
-    #model.train()
+    model = Model('training2')
+    model.train()
